@@ -1,0 +1,450 @@
+[
+  {
+    "content": "J. Bollen et al. / Journal of Computational Science 2 (2011) 1-8",
+    "bbox": [
+      [210.2525634765625, 750.63037109375, 392.0860595703125, 758.072021484375]
+    ],
+    "label": "page_header",
+    "page": 1
+  },
+  {
+    "content": "3",
+    "bbox": [
+      [559.478759765625, 750.8289184570312, 564.277099609375, 758.1109619140625]
+    ],
+    "label": "page_header",
+    "page": 1
+  },
+  {
+    "captions": "",
+    "path": "output/media-8e7fe280-c285-45d9-aa59-4a2cb3382949.png",
+    "bbox": [
+      [
+        146.30458068847656, 573.5188598632812, 459.6626281738281,
+        738.0086669921875
+      ]
+    ],
+    "label": "picture",
+    "page": 1
+  },
+  {
+    "content": "Fig. 1. Diagramoutlining3phasesofmethodologyandcorrespondingdatasets:(1)creationandvalidationofOpinionFinderandGPOMSpublicmoodtimeseriesfromOctober 2008 to December 2008 (Presidential Election and Thanksgiving), (2) use of Granger causality analysis to determine correlation between DJIA, OpinionFinder and GPOMS public mood from August 2008 to December 2008, and (3) training of a Self-Organizing Fuzzy Neural Network to predict DJIA values on the basis of various combinations of past DJIA values and OF and GPOMS public mood data from March 2008 to December 2008.",
+    "bbox": [
+      [
+        42.161842346191406, 449.201904296875, 563.8209228515625,
+        482.0907897949219
+      ]
+    ],
+    "label": "caption",
+    "page": 1
+  },
+  {
+    "captions": "Fig. 1. Diagramoutlining3phasesofmethodologyandcorrespondingdatasets:(1)creationandvalidationofOpinionFinderandGPOMSpublicmoodtimeseriesfromOctober 2008 to December 2008 (Presidential Election and Thanksgiving), (2) use of Granger causality analysis to determine correlation between DJIA, OpinionFinder and GPOMS public mood from August 2008 to December 2008, and (3) training of a Self-Organizing Fuzzy Neural Network to predict DJIA values on the basis of various combinations of past DJIA values and OF and GPOMS public mood data from March 2008 to December 2008.",
+    "path": "output/media-ae68ca25-8df5-47d8-ab64-50bfd993ba0d.png",
+    "bbox": [
+      [
+        146.1808624267578, 491.5661926269531, 459.80975341796875,
+        568.8400268554688
+      ]
+    ],
+    "label": "picture",
+    "page": 1
+  },
+  {
+    "content": "original POMS terms (in accordance with its co-occurence weight) and via the POMS scoring table to its respective POMS dimension. The score of each POMS mood dimension is thus determined as the weighted sum of the co-occurence weights of each tweet term that matched the GPOMS lexicon. Data sets and methods are available on our project web site. 7",
+    "bbox": [
+      [
+        41.8792839050293, 374.21746826171875, 294.2889099121094,
+        435.2814025878906
+      ]
+    ],
+    "label": "text",
+    "page": 1
+  },
+  {
+    "content": "To enable the comparison of OF and GPOMS time series we normalize them to z -scores on the basis of a local mean and standard deviation within a sliding window of k days before and after the particular date. For example, the z -score of time series X$_{t}$ , denoted Z$_{X}$$_{t}$ , is defined as:",
+    "bbox": [
+      [42.08313751220703, 320.9033203125, 294.28558349609375, 372.7565002441406]
+    ],
+    "label": "text",
+    "page": 1
+  },
+  {
+    "content": "Z$_{X}$$_{t}$ = X$_{t}$ - \u00af x ( X$_{t}$$_{\u00b1}$$_{k}$ ) GLYPH<ESC> ( X$_{t}$$_{\u00b1}$$_{k}$ ) (1)",
+    "bbox": [
+      [
+        41.99403762817383, 294.69970703125, 294.2882995605469,
+        315.43023681640625
+      ]
+    ],
+    "label": "formula",
+    "page": 1
+  },
+  {
+    "content": "where \u00af x ( X$_{t}$$_{\u00b1}$$_{k}$ ) and GLYPH<ESC> ( D$_{t}$$_{\u00b1}$$_{k}$ ) represent the mean and standard deviation of the time series within the period [ t - k , t + k ]. This normalization causes all time series to fluctuate around a zero mean and be expressed on a scale of 1 standard deviation.",
+    "bbox": [
+      [
+        42.12113571166992, 248.95977783203125, 294.2842102050781,
+        289.3145751953125
+      ]
+    ],
+    "label": "text",
+    "page": 1
+  },
+  {
+    "content": "The mentioned z -score normalization is intended to provide a common scale for comparisons of the OF and GPOMS time series. However, to avoid so-called \"in-sample\" bias, we do not apply z -score normalization to the mood and DJIA time series that are used to test the prediction accuracy of our Self-Organizing Fuzzy Neural Network in Section 2.5. This analysis and our prediction results rest on the raw values for both time series and the DJIA.",
+    "bbox": [
+      [
+        41.99176025390625, 175.62615966796875, 294.2857971191406,
+        247.51470947265625
+      ]
+    ],
+    "label": "text",
+    "page": 1
+  },
+  {
+    "content": "2.3. Cross-validating OF and GPOMS time series against large socio-cultural events",
+    "bbox": [
+      [41.79240417480469, 144.82785034179688, 266.6279296875, 163.831787109375]
+    ],
+    "label": "section_header",
+    "page": 1
+  },
+  {
+    "content": "We first validate the ability of OF and GPOMS to capture various aspects of public mood. To do so we apply them to tweets posted in a 2-month period from October 5, 2008 to December 5, 2008. This period was chosen specifically because it includes several sociocultural events that may have had a unique, significant and complex",
+    "bbox": [
+      [
+        42.258384704589844, 81.36981201171875, 294.2882080078125,
+        132.15936279296875
+      ]
+    ],
+    "label": "text",
+    "page": 1
+  },
+  {
+    "content": "7 See http://terramood.informatics.indiana.edu/data.",
+    "bbox": [
+      [
+        47.84861755371094, 49.51434326171875, 210.15322875976562,
+        57.29400634765625
+      ]
+    ],
+    "label": "footnote",
+    "page": 1
+  },
+  {
+    "content": "effect on public mood namely the U.S presidential election (November 4, 2008) and Thanksgiving (November 27, 2008). The OF and GPOMS measurements can therefore be cross-validated against the expected emotional responses to these events. The resulting mood time series are shown in Fig. 2 and are expressed in z -scores as given by in Eq. (1).",
+    "bbox": [
+      [
+        311.4647521972656, 373.40313720703125, 563.775146484375,
+        435.422119140625
+      ]
+    ],
+    "label": "text",
+    "page": 1
+  },
+  {
+    "content": "Fig. 2. Tracking public mood states from tweets posted between October 2008 to December 2008 shows public responses to presidential election and thanksgiving.",
+    "bbox": [
+      [
+        311.5942077636719, 49.3145751953125, 563.7774658203125,
+        64.65594482421875
+      ]
+    ],
+    "label": "caption",
+    "page": 1
+  },
+  {
+    "captions": "Fig. 2. Tracking public mood states from tweets posted between October 2008 to December 2008 shows public responses to presidential election and thanksgiving.",
+    "path": "output/media-3f64539c-21e0-4fe0-96b9-e87108f9dff0.png",
+    "bbox": [
+      [317.4866943359375, 74.7373046875, 559.5087280273438, 349.4382019042969]
+    ],
+    "label": "picture",
+    "page": 1
+  },
+  {
+    "content": "4",
+    "bbox": [
+      [
+        31.161067962646484, 750.8289184570312, 35.9254150390625,
+        757.7317504882812
+      ]
+    ],
+    "label": "page_header",
+    "page": 2
+  },
+  {
+    "content": "J. Bollen et al. / Journal of Computational Science 2 (2011) 1-8",
+    "bbox": [
+      [
+        199.28834533691406, 750.7491455078125, 381.2767028808594,
+        757.954345703125
+      ]
+    ],
+    "label": "page_header",
+    "page": 2
+  },
+  {
+    "content": "Table 1 Multiple regression results for OpinionFinder vs. 6 GPOMS mood dimensions.",
+    "bbox": [
+      [
+        30.949417114257812, 722.7180786132812, 267.09783935546875,
+        739.206787109375
+      ]
+    ],
+    "label": "caption",
+    "page": 2
+  },
+  {
+    "captions": "Table 1 Multiple regression results for OpinionFinder vs. 6 GPOMS mood dimensions.",
+    "data": ",0,1,2,3,4\n0,Parameters,Coeff.,Std. Err.,t,P\n1,Calm ( X$_{1}$ ),1.731,1.348,1.284,0.205\n2,Alert ( X$_{2}$ ),0.199,2.319,0.086,0.932\n3,Sure ( X$_{3}$ ),3.897,0.613,6.356,4.25e - 08 ***\n4,Vital ( X$_{4}$ ),1.763,0.595,2.965,0.004 *\n5,Kind ( X$_{5}$ ),1.687,1.377,1.226,0.226\n6,Happy ( X$_{6}$ ),2.770,0.578,4.790,1.30e - 05 **\n7,Summary,Residual Std. Err.,Adj. R 2,\"F$_{6,55}$\",p\n8,,0.078,0.683,22.93,2.382e - 13\n",
+    "path": null,
+    "bbox": [
+      [
+        31.150484085083008, 617.5528564453125, 283.5388488769531,
+        718.923095703125
+      ]
+    ],
+    "label": "table",
+    "page": 2
+  },
+  {
+    "content": "* p <0.1.",
+    "bbox": [
+      [
+        38.439796447753906, 607.7587280273438, 64.10336303710938,
+        614.9292602539062
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "** p <0.05.",
+    "bbox": [
+      [
+        34.58755111694336, 599.1907958984375, 67.92902374267578,
+        606.3613891601562
+      ]
+    ],
+    "label": "footnote",
+    "page": 2
+  },
+  {
+    "content": "*** p <0.001.",
+    "bbox": [
+      [
+        33.684513092041016, 589.9644775390625, 71.8829345703125,
+        598.4446411132812
+      ]
+    ],
+    "label": "footnote",
+    "page": 2
+  },
+  {
+    "content": "Fig. 2 shows that the OF successfully identifies the public's emotional response to the Presidential election on November 4th and Thanksgiving on November 27th. In both cases OF marks a significant, but short-lived uptick in positive sentiment specific to those days.",
+    "bbox": [
+      [
+        31.11036491394043, 517.3618774414062, 283.4790954589844,
+        567.942138671875
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "The GPOMS results reveal a more differentiated public mood response to the events in the 3-day period surrounding the election day (November 4, 2008). November 3, 2008 is characterized by a significant drop in Calm indicating highly elevated levels of public anxiety. Election Day itself is characterized by a reversal of Calm scores indicating a significant reduction in public anxiety, in conjunction with a significant increases of Vital, Happy as well as Kind scores. The latter indicates a public that is energized, happy and friendly on election day. On November 5, these GPOMS dimensions continue to indicate positive mood levels, in particular high levels of Calm, Sure, Vital and Happy. After November 5, all mood dimensions gradually return to the baseline. The public mood response to Thanksgiving on November 27, 2008 provides a counterpart to the differentiated response to the Presidential Election. On Thanksgiving day we find a spike in Happy values, indicating high levels of public happiness. However, no other mood dimensions are elevated on November 27. Furthermore, the spike in Happy values is limited to the 1 day, i.e. we find no significant mood response the day before or after Thanksgiving.",
+    "bbox": [
+      [
+        31.00908660888672, 318.207275390625, 283.4782409667969,
+        515.4180908203125
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "A visual comparison of Fig. 2 suggests that GPOMS' Happy dimension best approximates the mood trend provided by OpinionFinder. To quantitatively determine the relations between GPOMS's mood dimensions and the OF mood trends, we test the correlation between the trend obtained from OF lexicon and the six dimensions of GPOMS using multiple regression. The regression model is shown in Eq. (2).",
+    "bbox": [
+      [
+        31.211881637573242, 244.93634033203125, 283.6560363769531,
+        316.6724548339844
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "Y$_{OF}$ = \u02db + N \u2211 i = 1 \u02c7$_{i}$X$_{i}$ + \u03b5$_{t}$ (2)",
+    "bbox": [
+      [
+        31.282440185546875, 203.9402618408203, 283.4786071777344,
+        234.3936767578125
+      ]
+    ],
+    "label": "formula",
+    "page": 2
+  },
+  {
+    "content": "where N =6, X$_{1}$ , X$_{2}$ , X$_{3}$ , X$_{4}$ , X$_{5}$ , and X$_{6}$ represent the mood time series obtained from the 6 GPOMS dimensions, respectively Calm, Alert, Sure, Vital, Kind and Happy.",
+    "bbox": [
+      [
+        30.937198638916016, 164.37652587890625, 283.67333984375,
+        194.2603759765625
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "The multiple linear regression results are provided in Table 1 (coefficient and p -values), and indicate that Y$_{OF}$ is significantly correlated with X$_{3}$ (Sure), X$_{4}$ (Vital) and X$_{6}$ (Happy), but not with X$_{1}$ (Calm), X$_{2}$ (Alert) and X$_{5}$ (Kind). We therefore conclude that certain GPOMS mood dimension partially overlap with the mood values provided by OpinionFinder, but not necessarily all mood dimensions that may be important in describing the various components of public mood e.g. the varied mood response to the Presidential Election. The GPOMS thus provides a unique perspective on public mood states not captured by uni-dimensional tools such as OpinionFinder.",
+    "bbox": [
+      [
+        31.016756057739258, 49.83259582519531, 283.477783203125,
+        163.0350341796875
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "Statisticalsignificance( p -values)ofbivariateGranger-causalitycorrelationbetween moods and DJIA in period February 28, 2008 to November 3, 2008.",
+    "bbox": [
+      [
+        301.41131591796875, 714.6638793945312, 552.9649658203125,
+        729.5953979492188
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "Table 2",
+    "bbox": [
+      [
+        300.52093505859375, 731.8002319335938, 324.406005859375,
+        738.7311401367188
+      ]
+    ],
+    "label": "caption",
+    "page": 2
+  },
+  {
+    "captions": "Table 2",
+    "data": ",Lag,OF,Calm,Alert,Sure,Vital,Kind,Happy\n0,1 Day,0.085 *,0.272,0.952,0.648,0.120,0.848,0.388\n1,2 Days,0.268,0.013 **,0.973,0.811,0.369,0.991,0.7061\n2,3 Days,0.436,0.022 **,0.981,0.349,0.418,0.991,0.723\n3,4 Days,0.218,0.030 **,0.998,0.415,0.475,0.989,0.750\n4,5 Days,0.300,0.036 **,0.989,0.544,0.553,0.996,0.173\n5,6 Days,0.446,0.065 *,0.996,0.691,0.682,0.994,0.081 *\n6,7 Days,0.620,0.157,0.999,0.381,0.713,0.999,0.150\n",
+    "path": null,
+    "bbox": [
+      [
+        300.53350830078125, 632.0021362304688, 552.5118408203125,
+        709.80419921875
+      ]
+    ],
+    "label": "table",
+    "page": 2
+  },
+  {
+    "content": "* p <0.1. ** p <0.05.",
+    "bbox": [
+      [
+        305.97869873046875, 613.7362060546875, 337.4184265136719,
+        629.4746704101562
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "2.4. Bivariate Granger causality analysis of mood vs. DJIA prices",
+    "bbox": [
+      [
+        300.2059631347656, 589.6846923828125, 534.4012451171875,
+        598.4212036132812
+      ]
+    ],
+    "label": "section_header",
+    "page": 2
+  },
+  {
+    "content": "After establishing that our mood time series responds to significant socio-cultural events such as the Presidential Election and Thanksgiving, we are concerned with the question whether other variations of the public's mood state correlate with changes in the stock market, in particular DJIA closing values. To answer this question, we apply the econometric technique of Granger causality analysis to the daily time series produced by GPOMS and OpinionFinder vs. the DJIA. Granger causality analysis rests on the assumption that if a variable X causes Y then changes in X will systematically occur before changes in Y . We will thus find that the lagged values of X will exhibit a statistically significant correlation with Y . Correlation however does not prove causation. We therefore use Granger causality analysis in a similar fashion to [17];we are not testing actual causation but whether one time series has predictive information about the other or not. 8",
+    "bbox": [
+      [
+        300.5968322753906, 421.771728515625, 555.1441650390625,
+        577.4132690429688
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "Our DJIA time series, denoted D$_{t}$ , is defined to reflect daily changes in stock market value, i.e. its values are the delta between day t and day t - 1: D$_{t}$ = DJIA$_{t}$ - DJIA$_{t}$$_{-}$$_{1}$ . To test whether our mood time series predicts changes in stock market values we compare the variance explained by two linear models as shown in Eqs. (3) and (4). The first model ( L$_{1}$ ) uses only n lagged values of D$_{t}$ , i.e. ( D$_{t}$$_{-}$$_{1}$ , \u00b7\u00b7\u00b7 , D$_{t}$$_{-}$$_{n}$ ) for prediction, while the second model L$_{2}$ uses the n lagged values of both D$_{1}$ and the GPOMS plus the OpinionFinder mood time series denoted X$_{t}$$_{-}$$_{1}$ , \u00b7\u00b7\u00b7 , X$_{t}$$_{-}$$_{n}$ .",
+    "bbox": [
+      [
+        300.3074645996094, 327.60601806640625, 552.9653930664062,
+        420.6677551269531
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "We perform the Granger causality analysis according to model L$_{1}$ and L$_{2}$ shown in Eqs. (3) and (4) for the period of time between February 28 to November 3, 2008 to exclude the exceptional public mood response to the Presidential Election and Thanksgiving from the comparison. GPOMS and OpinionFinder time series were produced for 342,255 tweets in that period, and the daily Dow Jones Industrial Average (DJIA) was retrieved from Yahoo! Finance for each day. 9",
+    "bbox": [
+      [300.4564208984375, 244.01171875, 552.967529296875, 326.79827880859375]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "L$_{1}$ : D$_{t}$ = \u02db + n \u2211 i = 1 \u02c7$_{i}$D$_{t}$$_{-}$$_{i}$ + \u03b5$_{t}$ (3)",
+    "bbox": [
+      [
+        300.7041931152344, 208.06996154785156, 552.9679565429688,
+        237.95001220703125
+      ]
+    ],
+    "label": "formula",
+    "page": 2
+  },
+  {
+    "content": "L$_{2}$ : D$_{t}$ = \u02db + n \u2211 i = 1 \u02c7$_{i}$D$_{t}$$_{-}$$_{i}$ + n \u2211 i = 1 GLYPH<CR>$_{i}$X$_{t}$$_{-}$$_{i}$ + \u03b5$_{t}$ (4)",
+    "bbox": [
+      [
+        300.97344970703125, 171.7501678466797, 552.9679565429688,
+        201.4635009765625
+      ]
+    ],
+    "label": "formula",
+    "page": 2
+  },
+  {
+    "content": "Based on the results of our Granger causality (shown in Table 2), we can reject the null hypothesis that the mood time series do not predict DJIA values, i.e. \u02c7$_{{}$$_{1,2,}$$_{\u00b7\u00b7\u00b7}$$_{,}$$_{n}$$_{}}$ / = 0 with a high level of confidence. However, this result only applies to 1 GPOMS mood",
+    "bbox": [
+      [
+        300.544677734375, 126.02031707763672, 553.0333862304688,
+        165.92572021484375
+      ]
+    ],
+    "label": "text",
+    "page": 2
+  },
+  {
+    "content": "8 Gilbert and Karahalios [17] uses only one mood index, namely Anxiety, but we investigate the relation between DJIA values and all Twitter mood dimensions measured by GPOMS and OpinionFinder.",
+    "bbox": [
+      [
+        301.1159973144531, 75.1807861328125, 553.2118530273438,
+        100.2227783203125
+      ]
+    ],
+    "label": "footnote",
+    "page": 2
+  },
+  {
+    "content": "9 Our DJIA time series has no values for weekends and holidays because trading is suspended during those days. We do not linearly extropolate to fill the gaps. This results in a time series of 64 days.",
+    "bbox": [
+      [300.412841796875, 49.16204833984375, 553.0584106445312, 74.3577880859375]
+    ],
+    "label": "footnote",
+    "page": 2
+  }
+]
