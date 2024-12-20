@@ -8,6 +8,7 @@ class BaseElement:
     bbox: Optional[Tuple[float, float, float, float]]
     page: int
     type: str
+    group_id: Optional[str] = None
 
     def to_dict(self) -> dict:
         return {
@@ -15,6 +16,7 @@ class BaseElement:
             "page": self.page,
             "label": self.label,
             "bbox": self.bbox,
+            "group_id": self.group_id,
         }
 
 
@@ -51,17 +53,3 @@ class TextElement(BaseElement):
 
     def to_dict(self) -> dict:
         return {**super().to_dict(), "content": self.content}
-
-
-@dataclass
-class GroupElement(BaseElement):
-    elements: List[Union["GroupElement", TextElement, PictureElement, TableElement]] = (
-        field(default_factory=list)
-    )
-    type: str = "group"
-
-    def to_dict(self) -> dict:
-        return {
-            **super().to_dict(),
-            "elements": [element.to_dict() for element in self.elements],
-        }

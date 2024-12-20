@@ -32,7 +32,9 @@ class PictureProcessor(BaseProcessor):
             # Convert image to bytes and save as PNG
             img_byte_arr = BytesIO()
             image.save(img_byte_arr, format="PNG")
-            path = self.storage.save_file(img_byte_arr.getvalue(), ".png")
+            path = self.storage.save_file(
+                img_byte_arr.getvalue(), self.get_filename(element, document)
+            )
 
         return PictureElement(
             **metadata, captions=element.caption_text(document), path=path

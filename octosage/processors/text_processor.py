@@ -21,4 +21,5 @@ class TextProcessor(BaseProcessor):
             TextElement: Processed text element with metadata and content
         """
         metadata = self.get_base_metadata(element)
+        print(element)
         return TextElement(**metadata, content=element.text)

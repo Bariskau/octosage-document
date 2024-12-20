@@ -1,0 +1,195 @@
+{
+  "metadata": {
+    "pages": {
+      "1": {
+        "width": 595.2200317382812,
+        "height": 842.0
+      }
+    }
+  },
+  "elements": [
+    {
+      "type": "text",
+      "page": 1,
+      "label": "section_header",
+      "bbox": [
+        101.56500244140625, 750.6666870117188, 508.6666564941406,
+        769.6666870117188
+      ],
+      "group_id": null,
+      "content": "4.4 Kablo Malzeme Bacağı Hazırlama, Kalaylama (Devamı)"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "caption",
+      "bbox": [77.0, 609.0, 136.3333282470703, 622.3333129882812],
+      "group_id": null,
+      "content": "Resim 4-4"
+    },
+    {
+      "type": "picture",
+      "page": 1,
+      "label": "picture",
+      "bbox": [
+        69.905517578125, 629.721435546875, 267.5050354003906, 727.0975952148438
+      ],
+      "group_id": null,
+      "captions": "Resim 4-4",
+      "path": "/home/qzer/Desktop/work/document/output/4563090407595666283_pictures_0.png"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "caption",
+      "bbox": [94.33333587646484, 177.0, 153.6666717529297, 190.3333282470703],
+      "group_id": null,
+      "content": "Resim 4-5"
+    },
+    {
+      "type": "picture",
+      "page": 1,
+      "label": "picture",
+      "bbox": [
+        69.79853820800781, 198.16644287109375, 249.67861938476562,
+        286.74481201171875
+      ],
+      "group_id": null,
+      "captions": "Resim 4-5",
+      "path": "/home/qzer/Desktop/work/document/output/4563090407595666283_pictures_1.png"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "page_footer",
+      "bbox": [69.66666412353516, 49.0, 169.0, 61.0],
+      "group_id": null,
+      "content": "IPC-WHMA-A-620B"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "page_footer",
+      "bbox": [267.582275390625, 49.0, 328.3333435058594, 61.33333206176758],
+      "group_id": null,
+      "content": "Kasım 2012"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "page_footer",
+      "bbox": [501.1040344238281, 50.0, 524.6666870117188, 60.66666793823242],
+      "group_id": null,
+      "content": "4-11"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "section_header",
+      "bbox": [291.6666564941406, 683.0, 438.6666564941406, 724.6666870117188],
+      "group_id": null,
+      "content": "Kabul edilir-Sınıf 1 Proses Indikatörü-Sınıf 2 Kusur-Sınıf 3"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "list_item",
+      "bbox": [
+        293.96734619140625, 611.3333129882812, 529.3333129882812,
+        670.3333129882812
+      ],
+      "group_id": "list/0",
+      "content": "Kalaylanmış kablo üzerinde küçük delikler; boşluklar, kalaylanması gereken alanın %5'ini geçen iyi yapışmama veya hiç yapışmama durumları."
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "list_item",
+      "bbox": [293.9000549316406, 569.6666870117188, 528.0, 615.3333129882812],
+      "group_id": "list/0",
+      "content": "Kalaylanmış kısım ile izolasyon arasındaki kalaylanmamış kısmın uzunluğunun 1 kablo çapından (D) daha fazla olması."
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "text",
+      "bbox": [292.0, 490.3333435058594, 521.3333129882812, 560.6666870117188],
+      "group_id": null,
+      "content": "Not: J-STD-002 (Malzeme bacakları ; sonlandırmalar, terminaller ve kablolar için lehimlenebilirlik testleri) bu gerekliliklerin uygulanması için ek bilgiler ihtiva etmektedir ."
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "section_header",
+      "bbox": [
+        295.5071716308594, 420.3333435058594, 385.6666564941406,
+        434.3333435058594
+      ],
+      "group_id": null,
+      "content": "Kusur-Sınıf 2,3"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "list_item",
+      "bbox": [
+        296.20733642578125, 379.6666564941406, 482.6666564941406,
+        408.3333435058594
+      ],
+      "group_id": "list/1",
+      "content": "Kalaylanan bölümde iyi yapışma olmaması ."
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "list_item",
+      "bbox": [296.6087646484375, 336.0, 532.0, 380.0],
+      "group_id": "list/1",
+      "content": "Damarlı kabloların terminallere montajından önce ve kablo eklemelerinde (ağ metodu hariç) kalaylanmaması"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "section_header",
+      "bbox": [
+        286.2071533203125, 263.6666564941406, 386.3333435058594,
+        278.3333435058594
+      ],
+      "group_id": null,
+      "content": "Kusur-Sınıf 1,2,3"
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "list_item",
+      "bbox": [
+        283.1243591308594, 205.3333282470703, 510.6666564941406,
+        250.3333282470703
+      ],
+      "group_id": "list/2",
+      "content": "Kablonun kullanılır bölümünde; sonraki adımları etkileyecek şekilde lehim yığılması veya saçak oluşması."
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "list_item",
+      "bbox": [
+        283.11419677734375, 166.3333282470703, 496.6666564941406,
+        208.6666717529297
+      ],
+      "group_id": "list/2",
+      "content": "Biçim; uygunluk ve fonksiyonu etkileyecek şekilde yoğun kalaylama olması ."
+    },
+    {
+      "type": "text",
+      "page": 1,
+      "label": "list_item",
+      "bbox": [
+        283.0820007324219, 124.33333587646484, 512.9686889648438,
+        166.3333282470703
+      ],
+      "group_id": "list/2",
+      "content": "Lehimlemeden sonra kablonun esnek kalması gereken kısımlarına lehim olması akışı"
+    }
+  ]
+}

@@ -8,8 +8,8 @@ class LocalStorage(BaseStorage):
         self.base_path = Path(base_path) if isinstance(base_path, str) else base_path
         self.base_path.mkdir(parents=True, exist_ok=True)
 
-    def save_file(self, content: bytes, extension: str) -> str:
-        filename = self.base_path / f"media-{uuid.uuid4()}{extension}"
+    def save_file(self, content: bytes, filename: str) -> str:
+        filename = self.base_path / filename
         with filename.open("wb") as fp:
             fp.write(content)
         return str(filename)

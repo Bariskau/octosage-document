@@ -26,3 +26,7 @@ class BaseProcessor(ABC):
                 else None
             ),
         }
+
+    def get_filename(self, element: DocItem, document: DoclingDocument) -> BaseElement:
+        filename = "_".join(element.self_ref.split("/")[1:]) + ".png"
+        return f"{document.origin.binary_hash}_{filename}"

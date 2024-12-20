@@ -4,10 +4,10 @@ import json
 
 def main():
     try:
-        file_path = "./sample/test2.pdf"
+        file_path = "./sample/sample-cpu.pdf"
         converter = DocConverter()
         result = converter.convert(file_path)
-        print(json.dumps(result, indent=2))
+        print(json.dumps(result, indent=2, ensure_ascii=False))
 
     except Exception as e:
         raise
