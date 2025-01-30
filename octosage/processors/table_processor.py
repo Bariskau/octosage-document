@@ -1,6 +1,6 @@
 from io import BytesIO
-from .base import BaseProcessor
-from ..types.models import TableElement
+from octosage.processors.base import BaseProcessor
+from octosage.types.models import TableElement
 from docling_core.types.doc import TableItem, DoclingDocument
 
 
@@ -32,11 +32,13 @@ class TableProcessor(BaseProcessor):
             # Convert image to bytes and save as PNG
             img_byte_arr = BytesIO()
             image.save(img_byte_arr, format="PNG")
-            path = self.storage.save_file(img_byte_arr.getvalue(), self.get_filename(element, document))
+            path = self.storage.save_file(
+                img_byte_arr.getvalue(), self.get_filename(element, document)
+            )
 
         return TableElement(
             **metadata,
             captions=element.caption_text(document),
-            data=table_df.to_csv(),
+            data=table_df.to_markdown(),
             path=path
         )

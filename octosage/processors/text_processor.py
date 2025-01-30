@@ -1,5 +1,5 @@
-from .base import BaseProcessor
-from ..types.models import TextElement
+from octosage.processors.base import BaseProcessor
+from octosage.types.models import TextElement
 from docling_core.types.doc import TextItem, DoclingDocument
 
 

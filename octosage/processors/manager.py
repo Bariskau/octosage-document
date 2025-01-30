@@ -1,20 +1,22 @@
 from pathlib import Path
-from typing import Dict, Type, Optional, List, Union
+from typing import Dict, List, Optional, Type, Union
+
 from docling_core.types.doc import (
+    DocItem,
     DoclingDocument,
     GroupItem,
-    TableItem,
     PictureItem,
+    TableItem,
     TextItem,
-    DocItem,
 )
-from .picture_processor import PictureProcessor
-from .table_processor import TableProcessor
-from .text_processor import TextProcessor
-from ..storage.base import BaseStorage
-from ..storage.local import LocalStorage
-from ..types.models import BaseElement
-from ..settings import settings
+
+from octosage.processors.picture_processor import PictureProcessor
+from octosage.processors.table_processor import TableProcessor
+from octosage.processors.text_processor import TextProcessor
+from octosage.settings import settings
+from octosage.storage.base import BaseStorage
+from octosage.storage.local import LocalStorage
+from octosage.types.models import BaseElement
 
 
 class ProcessManager:

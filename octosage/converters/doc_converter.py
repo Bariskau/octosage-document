@@ -5,7 +5,7 @@ from docling.datamodel.pipeline_options import (
     AcceleratorOptions,
     AcceleratorDevice,
 )
-from ..processors.manager import ProcessManager
+from octosage.processors.manager import ProcessManager
 from docling.datamodel.pipeline_options import (
     EasyOcrOptions,
 )

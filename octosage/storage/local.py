@@ -1,6 +1,6 @@
 from pathlib import Path
 import uuid
-from .base import BaseStorage
+from octosage.storage.base import BaseStorage
 
 
 class LocalStorage(BaseStorage):

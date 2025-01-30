@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from docling_core.types.doc import DocItem, DoclingDocument
-from ..types.models import BaseElement
-from ..storage.base import BaseStorage
+from octosage.types.models import BaseElement
+from octosage.storage.base import BaseStorage
 
 
 class BaseProcessor(ABC):

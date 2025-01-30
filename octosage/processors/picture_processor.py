@@ -1,6 +1,6 @@
 from io import BytesIO
-from .base import BaseProcessor
-from ..types.models import PictureElement
+from octosage.processors.base import BaseProcessor
+from octosage.types.models import PictureElement
 from docling_core.types.doc import PictureItem, DoclingDocument
 
 

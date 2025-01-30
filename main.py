@@ -5,7 +5,7 @@ from octosage.operations.sort_operation import SortOperation
 
 def main():
     try:
-        file_path = "./sample/sample-cpu.pdf"
+        file_path = "./sample/test1.pdf"
         converter = DocConverter()
         result = converter.convert(file_path)
         sort_operator = SortOperation()
