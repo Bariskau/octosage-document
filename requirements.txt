@@ -1,2 +1,8 @@
 docling
 lxml
+fastapi 
+uvicorn
+python-multipart
+pydantic
+tesserocr
+minio

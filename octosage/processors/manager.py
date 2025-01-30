@@ -1,27 +1,33 @@
-from pathlib import Path
-from typing import Dict, List, Optional, Type, Union
-
+from typing import Dict, Optional, List, Union
 from docling_core.types.doc import (
-    DocItem,
     DoclingDocument,
     GroupItem,
-    PictureItem,
     TableItem,
+    PictureItem,
     TextItem,
+    DocItem,
 )
-
 from octosage.processors.picture_processor import PictureProcessor
 from octosage.processors.table_processor import TableProcessor
 from octosage.processors.text_processor import TextProcessor
-from octosage.settings import settings
-from octosage.storage.base import BaseStorage
 from octosage.storage.local import LocalStorage
+from octosage.storage.s3 import S3Storage
 from octosage.types.models import BaseElement
+from octosage.settings import settings
 
 
 class ProcessManager:
-    def __init__(self, storage: Optional[BaseStorage] = None):
-        self.storage = storage or LocalStorage(settings.OUTPUT_DIR)
+    def __init__(self):
+        if settings.DRIVE is "local":
+            self.storage = LocalStorage(settings.OUTPUT_DIR)
+        else:
+            self.storage = S3Storage(
+                bucket_name=settings.S3_BUCKET,
+                access_key=settings.S3_KEY,
+                secret_key=settings.S3_SECRET,
+                endpoint_url=settings.S3_ENDPOINT,
+            )
+
         self.processors = {
             PictureItem: PictureProcessor(self.storage),
             TableItem: TableProcessor(self.storage),
@@ -82,6 +88,10 @@ class ProcessManager:
 
         # Create final output with metadata
         return {
-            "metadata": {"pages": self.get_page_metadata(document)},
+            "metadata": {
+                "pages": self.get_page_metadata(document),
+                "filename": document.origin.filename,
+                "hash": document.origin.binary_hash,
+            },
             "elements": elements,
         }

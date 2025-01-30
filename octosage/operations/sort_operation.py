@@ -1,50 +1,47 @@
 import copy
 from typing import List, Dict, Any
-from transformers import LayoutLMv3ForTokenClassification
 import torch
 from octosage.utils.helpers import prepare_inputs, boxes2inputs, parse_logits
 from collections import defaultdict
+from transformers import LayoutLMv3ForTokenClassification
+from octosage.settings import settings
+from contextlib import ContextDecorator
 
 
-class LayoutReaderModel:
-    """
-    Singleton class for managing LayoutLMv3 model instances
-    Ensures model is loaded only once and reused across instances
-    """
+class ModelManager(ContextDecorator):
+    """Context manager for handling model lifecycle"""
 
-    _instance = None
+    def __init__(self):
+        self.model = None
 
-    def __new__(cls, model_name: str = "hantian/layoutreader"):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-            cls._instance.model = LayoutLMv3ForTokenClassification.from_pretrained(
-                model_name
-            )
-            cls._instance.device = torch.device(
-                "cuda" if torch.cuda.is_available() else "cpu"
-            )
-            cls._instance.model.to(cls._instance.device)
-        return cls._instance
-
-    def get_model(self):
-        """Return the singleton model instance"""
+    def __enter__(self):
+        self.model = LayoutLMv3ForTokenClassification.from_pretrained(
+            "hantian/layoutreader"
+        )
+        self.model.to(settings.DEVICE)
         return self.model
 
-    def get_device(self):
-        """Return the current computation device"""
-        return self.device
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.model is not None:
+            self.model.cpu()  # Move model back to CPU
+            del self.model  # Remove model reference
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()  # Clear CUDA cache
+        return False  # Propagate exceptions if any
 
 
 class SortOperation:
     def __init__(self):
-        """Initialize with singleton model instance"""
-        self.model = LayoutReaderModel().get_model()
-        self.device = LayoutReaderModel().get_device()
+        """Initialize without loading model"""
+        self.model_manager = ModelManager()
 
     def sort(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """Main processing pipeline for document sorting"""
         processed_data = self._preprocess_data(data)
-        processed_data["elements"] = self._process_elements(processed_data)
+
+        with self.model_manager as model:
+            processed_data["elements"] = self._process_elements(processed_data, model)
+
         return processed_data
 
     def _preprocess_data(self, data: Dict[str, Any]) -> Dict[str, Any]:
@@ -57,7 +54,9 @@ class SortOperation:
         ]
         return processed_data
 
-    def _process_elements(self, data: Dict[str, Any]) -> List[Dict]:
+    def _process_elements(
+        self, data: Dict[str, Any], model: LayoutLMv3ForTokenClassification
+    ) -> List[Dict]:
         """Process elements with page-wise grouping and sorting"""
         elements = []
         for element in data["elements"]:
@@ -75,7 +74,7 @@ class SortOperation:
         # Process pages in numerical order
         sorted_elements = []
         for page_num in sorted(page_groups.keys()):
-            page_elements = self._sort_elements(page_groups[page_num])
+            page_elements = self._sort_elements(page_groups[page_num], model)
             sorted_elements.extend(page_elements)
 
         return sorted_elements
@@ -172,7 +171,9 @@ class SortOperation:
 
         return scaled_boxes
 
-    def _sort_elements(self, elements: List[Dict]) -> List[Dict]:
+    def _sort_elements(
+        self, elements: List[Dict], model: LayoutLMv3ForTokenClassification
+    ) -> List[Dict]:
         """Sort elements within a single page using model predictions"""
         flat_boxes = []
         element_indices = []
@@ -192,8 +193,8 @@ class SortOperation:
         # Get model predictions
         with torch.no_grad():
             inputs = boxes2inputs(flat_boxes)
-            inputs = prepare_inputs(inputs, self.model)
-            outputs = self.model(**inputs)
+            inputs = prepare_inputs(inputs, model)
+            outputs = model(**inputs)
             logits = outputs.logits.cpu().squeeze(0)
 
         # Parse model output to get reading order
