@@ -11,10 +11,10 @@ class TransformOperation:
         self.text_buffer = []
         self.buffer_length = 0
         self.text_buffer_page = None
+        self.first_element_bbox = None  # First element's bbox in current buffer
 
     def get_page_header(self, page_num, current_index):
         """Find page header for specific page"""
-        # İlgili sayfadaki ilk 5 elemanı bul
         page_elements = []
         i = current_index
         while i < len(self.elements) and len(page_elements) < 5:
@@ -24,7 +24,6 @@ class TransformOperation:
                 break
             i += 1
 
-        # Öncelik sırasına göre kontrol et
         for elem in page_elements:
             if elem["label"] == "page_header":
                 return elem["content"]
@@ -35,7 +34,7 @@ class TransformOperation:
             if elem["label"] == "section_header":
                 return elem["content"]
 
-        return self.current_page_header  # Eğer bulunamazsa önceki header'ı koru
+        return self.current_page_header
 
     def process_checkbox(self, element):
         """Process checkbox elements"""
@@ -48,7 +47,6 @@ class TransformOperation:
         after_text = []
         current_page = self.elements[index]["page"]
 
-        # Get text before
         i = index - 1
         chars_count = 0
         while i >= 0 and chars_count < max_chars:
@@ -62,7 +60,6 @@ class TransformOperation:
                     before_text.insert(0, content)
             i -= 1
 
-        # Get text after
         i = index + 1
         chars_count = 0
         while i < len(self.elements) and chars_count < max_chars:
@@ -83,20 +80,24 @@ class TransformOperation:
         if self.text_buffer:
             content = " ".join(text for text in self.text_buffer)
             if content.strip():
-                self.result.append(
-                    {
-                        "content": content,
-                        "page": self.text_buffer_page,
-                        "media_src": None,
-                        "data": None,
-                        "page_header": self.current_page_header,
-                        "title": self.current_title,
-                        "type": "text",
-                    }
-                )
+                result_element = {
+                    "content": content,
+                    "page": self.text_buffer_page,
+                    "media_src": None,
+                    "data": None,
+                    "page_header": self.current_page_header,
+                    "title": self.current_title,
+                    "type": "text",
+                }
+                # Add bbox if we have stored it
+                if self.first_element_bbox:
+                    result_element["bbox"] = self.first_element_bbox
+                self.result.append(result_element)
+
             self.text_buffer = []
             self.buffer_length = 0
             self.text_buffer_page = None
+            self.first_element_bbox = None  # Reset bbox for next buffer
 
     def process_special_element(self, element, index):
         """Process picture, table, or formula elements"""
@@ -112,7 +113,7 @@ class TransformOperation:
         if after_text:
             content.append(after_text)
 
-        return {
+        result_element = {
             "content": "\n".join(content),
             "page": element["page"],
             "media_src": element.get("path"),
@@ -122,20 +123,23 @@ class TransformOperation:
             "type": element["label"],
         }
 
+        # Add bbox for special elements if available
+        if "bbox" in element:
+            result_element["bbox"] = element["bbox"]
+
+        return result_element
+
     def should_create_new_element(self, element, content, is_section_header=False):
         """Check if we should create a new element"""
         if not self.text_buffer:
             return False
 
-        # Sayfa değişiminde her zaman yeni eleman
         if self.text_buffer_page != element["page"]:
             return True
 
         if is_section_header:
-            # Section header kontrolü
             return self.buffer_length + len(content) > 2000
         else:
-            # Normal içerik kontrolü
             return self.buffer_length + len(content) > 2000
 
     def transform(self):
@@ -146,26 +150,22 @@ class TransformOperation:
         while i < len(self.elements):
             element = self.elements[i]
 
-            # Sayfa değişimi kontrolü
             if current_page != element["page"]:
                 self.flush_buffer()
                 current_page = element["page"]
                 self.current_page_header = self.get_page_header(current_page, i)
 
-            # Special elements are always processed separately
             if element["label"] in ["picture", "table", "formula"]:
                 self.flush_buffer()
                 self.result.append(self.process_special_element(element, i))
                 i += 1
                 continue
 
-            # Process content based on element type
             if element["label"] in ["checkbox_selected", "checkbox_unselected"]:
                 content = self.process_checkbox(element)
             else:
                 content = element["content"]
 
-            # Handle section headers
             if element["label"] == "section_header":
                 if self.should_create_new_element(element, content, True):
                     self.flush_buffer()
@@ -173,10 +173,12 @@ class TransformOperation:
                 self.current_section = content
                 if not self.text_buffer:
                     self.text_buffer_page = element["page"]
+                    # Store bbox of first element in new section
+                    if "bbox" in element:
+                        self.first_element_bbox = element["bbox"]
                 self.text_buffer.append(content)
                 self.buffer_length += len(content)
 
-                # Look ahead for content under this section within same page
                 next_section_idx = i + 1
                 section_content_length = 0
                 while next_section_idx < len(self.elements):
@@ -190,17 +192,17 @@ class TransformOperation:
                         section_content_length += len(next_elem["content"])
                     next_section_idx += 1
 
-                # If section content won't fit, flush and start new
                 if self.buffer_length + section_content_length > 2000:
                     self.flush_buffer()
                     self.text_buffer = [content]
                     self.buffer_length = len(content)
                     self.text_buffer_page = element["page"]
+                    if "bbox" in element:
+                        self.first_element_bbox = element["bbox"]
 
                 i += 1
                 continue
 
-            # Handle regular content
             if (
                 len(content) < 50
                 and self.text_buffer
@@ -214,12 +216,14 @@ class TransformOperation:
 
                 if not self.text_buffer:
                     self.text_buffer_page = element["page"]
+                    # Store bbox of first element in new buffer
+                    if "bbox" in element:
+                        self.first_element_bbox = element["bbox"]
                 self.text_buffer.append(content)
                 self.buffer_length += len(content)
 
             i += 1
 
-        # Flush any remaining content
         self.flush_buffer()
 
         return {

@@ -11,6 +11,8 @@ from octosage.operations.sort_operation import SortOperation
 from octosage.operations.transform_operation import TransformOperation
 from octosage.settings import settings
 import torch, gc
+from fastapi.responses import Response
+from octosage.services.pdf_drawing_service import PDFDrawingService
 
 order_model = None
 
@@ -43,15 +45,10 @@ async def process_and_sort(
     force_full_page_ocr: bool = Form(default=True),
     images_scale: float = Form(default=2.0),
     num_threads: int = Form(default=4),
+    draw_annotations: bool = Form(default=False),  # Yeni parametre
 ):
-    """
-    Process and sort a document
-    """
     try:
-        # Parse languages from string to list
         languages_list = json.loads(languages)
-
-        # Create params object
         params = DocumentProcessingRequest(
             languages=languages_list,
             force_full_page_ocr=force_full_page_ocr,
@@ -59,15 +56,14 @@ async def process_and_sort(
             num_threads=num_threads,
         )
 
-        # Create a temporary directory to store the uploaded file
         with tempfile.TemporaryDirectory() as temp_dir:
             temp_file_path = Path(temp_dir) / file.filename
 
-            # Save uploaded file
+            # Dosyayı kaydet
             with open(temp_file_path, "wb") as buffer:
                 shutil.copyfileobj(file.file, buffer)
 
-            # Initialize converter with parameters
+            # Converter'ı başlat
             converter = DocConverter(
                 languages=params.languages,
                 force_full_page_ocr=params.force_full_page_ocr,
@@ -75,15 +71,32 @@ async def process_and_sort(
                 num_threads=params.num_threads,
             )
 
-            # Process document
+            # Dökümanı işle
             result = converter.convert(str(temp_file_path))
 
             torch.cuda.empty_cache()
             gc.collect()
-            # Sort results
+
+            # Sırala
             sort_operator = SortOperation()
             sorted_result = sort_operator.sort(result)
 
+            # Eğer annotation istendiyse
+            if draw_annotations:
+                drawing_service = PDFDrawingService()
+                annotated_pdf = drawing_service.draw_annotations(
+                    str(temp_file_path), sorted_result["elements"]
+                )
+
+                return Response(
+                    content=annotated_pdf,
+                    media_type="application/pdf",
+                    headers={
+                        "Content-Disposition": f'attachment; filename="annotated_{file.filename}"'
+                    },
+                )
+
+            # Normal sonuç dönüşü
             return {"status": "success", "result": sorted_result}
 
     except Exception as e:
